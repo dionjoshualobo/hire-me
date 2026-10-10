@@ -6,6 +6,7 @@ import { dbMiddleware } from './middleware/db.js'
 import { postingsRouter } from './routes/postings.js'
 import { usersRouter } from './routes/users.js'
 import { clubMembersRouter } from './routes/club-members.js'
+import { applicationsRouter } from './routes/applications.js'
 
 const app = new Hono<{
   Bindings: { DATABASE_URL: string; NEON_AUTH_BASE_URL: string; WEB_ORIGIN: string }
@@ -36,6 +37,9 @@ app.get('/api/hello', (c) => c.json({ message: 'Hello from Hono' }))
 
 // Student job discovery
 app.route('/api/postings', postingsRouter)
+
+// Student applications and the recruiter status pipeline
+app.route('/api/applications', applicationsRouter)
 
 // Authenticated user record and role selection
 app.route('/api/users', usersRouter)
