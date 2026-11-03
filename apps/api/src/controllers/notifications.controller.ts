@@ -12,13 +12,7 @@ export interface CreateNotificationInput {
   payload?: Record<string, unknown>
 }
 
-/**
- * Inserts a notification for a user and returns the created row.
- *
- * Thin on purpose: notification delivery is in-app only today (clients read the
- * `notifications` table), so producing a row *is* the delivery mechanism. If
- * email or push is added later it belongs here, not at the call sites.
- */
+/** Inserts a notification for a user and returns the created row. */
 export async function createNotification(
   db: Database,
   input: CreateNotificationInput,
